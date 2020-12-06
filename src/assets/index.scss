@@ -1,0 +1,235 @@
+@mixin tpl_trans($f:20%) {
+    padding-left: $f;
+    transition: .5s all ease-in-out;
+}
+
+
+%tpl_trans_nop {
+    transition: .5s all ease-in-out;
+}
+
+.nav-wrapper {
+    height: 86px;
+    line-height: 86px;
+    list-style: none;
+    font-size: 1.5em;
+    margin: 0;
+    .nameUser {
+        padding: 0 20px 0 20px;
+    }
+    a {
+        @media only screen and (max-width: 600px) {
+            left:15%;
+            font-size: .6em;
+        }
+    }
+}
+
+.row.sidebars {
+    margin: 0px;
+    position: fixed;
+    .open {
+        transform: translateX(0%);
+
+    }
+
+    ul {
+        @extend %tpl_trans_nop;
+        transform: translateX(-101%);
+        position: fixed;
+        z-index: 3;
+        padding: 0 0px;
+        height: 100%;
+
+
+    }
+    li{
+        height: 64px;
+        line-height: 64px;
+        font-size: 1.2em;
+    }
+    .col.m2 {
+        @media only screen and (max-width: 600px) {
+            font-size: .7em;
+        }
+    }
+}
+
+nav {
+    i.material-icons {
+        line-height: 86px;
+    }
+    & ul a {
+        font-size: 1.3rem;
+    }
+}
+
+.progress {
+    margin-top: 30px;
+}
+
+.content-page {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 15px;
+    margin-top: 20px;
+    @extend %tpl_trans_nop;
+    &.open {
+        @include tpl_trans(15%);
+    }
+}
+
+.noFound {
+    @extend %tpl_trans_nop;
+    &.open {
+        @include tpl_trans(15%);
+    }
+}
+
+
+.content_block {
+    background: #e8e8e8;
+    height: 300px;
+    width: 30%;
+    min-width: 300px;
+    margin: 5px;
+}
+
+
+.contact {
+    padding: 20px;
+    @extend %tpl_trans_nop;
+    &.open {
+        @include tpl_trans();
+    }
+}
+
+.info {
+    padding: 20px;
+    @extend %tpl_trans_nop;
+    &.open {
+        @include tpl_trans();
+    }
+}
+
+
+.imageProfile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    padding: 20px;
+    .imageUser {
+        margin: 20px;
+
+        img {
+            height: 400px;
+            width: 400px;
+        }
+    }
+    .descript {
+        margin: 20px;
+        padding: 10px;
+        height: 400px;
+        width: 400px;
+    }
+    li {
+        list-style: none;
+        font-size: 1.1em;
+    }
+    @extend %tpl_trans_nop;
+    &.open {
+        @include tpl_trans();
+    }
+}
+
+.empty-layout {
+    height: 100vh;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login-box {
+        width: 630px;
+        margin-top: 100px;
+        background: #c3deff;
+        border-radius: 10px;
+        padding: 20px;
+        & a{
+            color:white;
+        }
+        .input-field {
+            height: 70px;
+        }
+        .column {
+            height: 40px;
+        }
+
+    }
+}
+
+.agree-button {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
+    & button {
+        margin: 10px;
+    }
+}
+
+
+@mixin boxAndSh($color) {
+    border-bottom: 1px solid $color;
+    box-shadow: 0 1px 0 0 $color;
+}
+
+@mixin inputFunc($type,$id) {
+    & label {
+        color: #000000;
+    }
+    & input[type=#{$type}]##{$id}:focus + label {
+        color: #1e87e3;
+    }
+    & input[type=#{$type}]##{$id}:focus {
+        @include boxAndSh(#1e87e3);
+    }
+    & input[type=#{$type}]##{$id}.valid {
+        @include boxAndSh(#1db824);
+    }
+    & input[type=#{$type}]##{$id}.invalid {
+        @include boxAndSh(#b41212);
+
+    }
+}
+
+.input-field{
+    font-size: 1em;
+
+    @include inputFunc(text,login);
+    @include inputFunc(text,first_name);
+    @include inputFunc(text,last_name);
+    @include inputFunc(password,password);
+    @include inputFunc(email,email);
+    /* icon prefix focus color */
+    & .prefix.active {
+        color: #1e87e3;
+    }
+
+    & .login-box label {
+        color: #000000;
+    }
+}
+
+.checkbox-agree[type="checkbox"].filled-in:checked + span:after{
+    border: 2px solid #1e87e3;
+    background-color: #1e87e3;
+}
+
+
+
+
